@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>準提佛母法器說明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+
+        .image-container {
+            position: relative;
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .tooltip-area {
+            position: absolute;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            z-index: 10;
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: transparent;
+            font-size: 16px;
+            text-shadow: none;
+            box-shadow: none;
+        }
+
+        .tooltip-area:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #2c3e50;
+            text-shadow: none;
+            transform: scale(1.1);
+            border: 2px solid #3498db;
+            font-weight: bold;
+        }
+
+        .tooltip-area:active {
+            background-color: rgba(255, 255, 255, 0.95);
+            transform: scale(1.05);
+        }
+
+        /* 觸控設備樣式 */
+        .tooltip-area.touch-active {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #2c3e50;
+            text-shadow: none;
+            transform: scale(1.1);
+            border: 2px solid #3498db;
+            font-weight: bold;
+        }
+
+        /* 法器位置區域 */
+        .abhaya-area {
+            top: 35%;
+            left: 33.5%;
+            width: 60px;
+            height: 60px;
+        }
+
+        .sword-area {
+            top: 18.5%;
+            right: 58.5%;
+            width: 70px;
+            height: 70px;
+        }
+
+        .mala-area {
+            top: 25%;
+            left: 24%;
+            width: 55px;
+            height: 55px;
+        }
+
+        .fruit-area {
+            top: 32%;
+            right: 74%;
+            width: 60px;
+            height: 60px;
+        }
+
+        .axe-area {
+            top: 41%;
+            left: 16.5%;
+            width: 65px;
+            height: 65px;
+        }
+
+        .hook-area {
+            top: 47%;
+            right: 75%;
+            width: 60px;
+            height: 60px;
+        }
+
+        .vajra-area {
+            top: 50%;
+            left: 23%;
+            width: 70px;
+            height: 70px;
+        }
+
+        .hair-vine-area {
+            top: 50%;
+            right: 50%;
+            width: 55px;
+            height: 55px;
+        }
+
+        .banner-area {
+            top: 32%;
+            left: 60%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 60px;
+        }
+
+        .lotus-area {
+            top: 19%;
+            left: 65%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 70px;
+        }
+
+        .pure-vase-area {
+            top: 22%;
+            left: 70%;
+            width: 60px;
+            height: 60px;
+        }
+
+        .rope-area {
+            top: 30%;
+            left: 71%;
+            width: 55px;
+            height: 55px;
+        }
+
+        .conch-area {
+            top: 36.5%;
+            left: 76%;
+            width: 65px;
+            height: 65px;
+        }
+
+        .wheel-area {
+            top: 45.5%;
+            left: 73%;
+            width: 70px;
+            height: 70px;
+        }
+
+        .wisdom-vase-area {
+            top: 51.5%;
+            left: 71%;
+            width: 60px;
+            height: 60px;
+        }
+
+        .wisdom-clamp-area {
+            top: 50%;
+            right: 45%;
+            width: 55px;
+            height: 55px;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.98);
+            color: #2c3e50;
+            padding: 20px 25px;
+            border-radius: 15px;
+            font-size: 15px;
+            line-height: 1.7;
+            max-width: 400px;
+            min-width: 350px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border: 2px solid #3498db;
+            font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+        }
+
+        .tooltip.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            border: 10px solid transparent;
+        }
+
+        .tooltip.left::after {
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-left-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .tooltip.right::after {
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-right-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .tooltip.top::after {
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top-color: rgba(255, 255, 255, 0.98);
+            border-left-color: transparent;
+            border-right-color: transparent;
+        }
+
+        .tooltip h3 {
+            color: #e74c3c;
+            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+        }
+
+        .instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 600px;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .instructions h2 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+
+        .instructions p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .tooltip {
+                max-width: 300px;
+                min-width: 280px;
+                font-size: 14px;
+                padding: 15px 20px;
+            }
+            
+            .tooltip h3 {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            
+            .tooltip-area {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .banner-area {
+                width: 80px;
+                height: 50px;
+            }
+            
+            .lotus-area, .vajra-area, .sword-area, .axe-area, .conch-area, .wheel-area {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .mala-area, .fruit-area, .hook-area, .hair-vine-area, .pure-vase-area, .rope-area, .wisdom-vase-area, .wisdom-clamp-area, .abhaya-area {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>準提佛母法器說明</h1>
+        <p>將滑鼠或手指靠近拿著法器的手，查看詳細說明</p>
+    </div>
+
+    <div class="image-container">
+        <img src="image/cundi.jpg" alt="準提佛母" class="main-image">
+        
+        <!-- 法器互動區域 -->
+        <!-- 1. 無畏印 -->
+        <div class="tooltip-area abhaya-area" data-tooltip="abhaya">
+            <span>1</span>
+            <div class="tooltip left" id="abhaya-tooltip">
+                <h3>無畏印</h3>
+                <p><strong>象徵意涵：</strong>精進與空性<br><strong>法器說明：</strong>張開的手掌代表空性的智慧，展現無所畏懼的勇氣和堅定的修行意志，能給予眾生信心與力量，幫助行者克服內心的恐懼。</p>
+            </div>
+        </div>
+
+        <!-- 2. 智慧劍 -->
+        <div class="tooltip-area sword-area" data-tooltip="sword">
+            <span>2</span>
+            <div class="tooltip right" id="sword-tooltip">
+                <h3>智慧劍</h3>
+                <p><strong>象徵意涵：</strong>斷煩惱、顯威猛<br><strong>法器說明：</strong>鋒利的智慧之劍能斬斷一切無明煩惱，破除愚癡迷障，打開通往般若智慧之門，讓行者得見真理。</p>
+            </div>
+        </div>
+
+        <!-- 3. 念珠 -->
+        <div class="tooltip-area mala-area" data-tooltip="mala">
+            <span>3</span>
+            <div class="tooltip left" id="mala-tooltip">
+                <h3>念珠</h3>
+                <p><strong>象徵意涵：</strong>念住與持咒<br><strong>法器說明：</strong>每一顆念珠代表一次虔誠的持咒修行，串連起來象徵綿延不斷的正念覺察，提醒行者時刻安住當下。</p>
+            </div>
+        </div>
+
+        <!-- 4. 妙天果 -->
+        <div class="tooltip-area fruit-area" data-tooltip="fruit">
+            <span>4</span>
+            <div class="tooltip right" id="fruit-tooltip">
+                <h3>妙天果（俱緣果）</h3>
+                <p><strong>象徵意涵：</strong>道果與善果<br><strong>法器說明：</strong>代表修行圓滿的最終果位與成就，象徵因緣和合的智慧，提醒行者善因必得善果，修持終將開花結果。</p>
+            </div>
+        </div>
+
+        <!-- 5. 斧 -->
+        <div class="tooltip-area axe-area" data-tooltip="axe">
+            <span>5</span>
+            <div class="tooltip left" id="axe-tooltip">
+                <h3>斧</h3>
+                <p><strong>象徵意涵：</strong>破障開創<br><strong>法器說明：</strong>威猛的斧頭能斬斷一切阻礙修行的障礙，破除頑固習氣，開創嶄新的修行局面，助行者勇猛精進。</p>
+            </div>
+        </div>
+
+        <!-- 6. 鉤 -->
+        <div class="tooltip-area hook-area" data-tooltip="hook">
+            <span>6</span>
+            <div class="tooltip right" id="hook-tooltip">
+                <h3>鉤</h3>
+                <p><strong>象徵意涵：</strong>攝受與權力<br><strong>法器說明：</strong>象徵準提佛母攝受眾生的慈悲力量與威德，鉤上的寶石顯示其殊勝威力，能將迷途眾生引向正道，增長人緣福報。</p>
+            </div>
+        </div>
+
+        <!-- 7. 金剛杵 -->
+        <div class="tooltip-area vajra-area" data-tooltip="vajra">
+            <span>7</span>
+            <div class="tooltip left" id="vajra-tooltip">
+                <h3>金剛杵</h3>
+                <p><strong>象徵意涵：</strong>除障降魔<br><strong>法器說明：</strong>代表堅固不壞的金剛智慧，能破除一切煩惱障礙，降伏心魔，克服修行違緣。亦可用於設立結界，守護道場清淨。</p>
+            </div>
+        </div>
+
+        <!-- 8. 髮蔓 -->
+        <div class="tooltip-area hair-vine-area" data-tooltip="hair-vine">
+            <span>8</span>
+            <div class="tooltip right" id="hair-vine-tooltip">
+                <h3>髮蔓</h3>
+                <p><strong>象徵意涵：</strong>平衡與因果<br><strong>法器說明：</strong>象徵修行中的平衡與合作精神，提醒行者重視因果關係，廣種善因以得善果，維持眾生與佛法之間的和諧平衡。</p>
+            </div>
+        </div>
+
+        <!-- 9. 如意寶幢 -->
+        <div class="tooltip-area banner-area" data-tooltip="banner">
+            <span>9</span>
+            <div class="tooltip top" id="banner-tooltip">
+                <h3>如意寶幢</h3>
+                <p><strong>象徵意涵：</strong>遮護與福德<br><strong>法器說明：</strong>具有遮蓋與保護的殊勝功能，福德愈大則傘蓋保護範圍愈廣。高舉寶幢象徵佛法廣傳十方，庇佑一切眾生。</p>
+            </div>
+        </div>
+
+        <!-- 10. 蓮花 -->
+        <div class="tooltip-area lotus-area" data-tooltip="lotus">
+            <span>10</span>
+            <div class="tooltip left" id="lotus-tooltip">
+                <h3>蓮花</h3>
+                <p><strong>象徵意涵：</strong>清淨解脫<br><strong>法器說明：</strong>出淤泥而不染，象徵在五濁惡世中保持清淨本性的解脫之道。九品金蓮花代表最高境界，提醒行者追求究竟清淨。</p>
+            </div>
+        </div>
+
+        <!-- 11. 淨瓶 -->
+        <div class="tooltip-area pure-vase-area" data-tooltip="pure-vase">
+            <span>11</span>
+            <div class="tooltip right" id="pure-vase-tooltip">
+                <h3>淨瓶</h3>
+                <p><strong>象徵意涵：</strong>純淨無染<br><strong>法器說明：</strong>盛裝甘露法水的寶瓶，象徵純粹清淨、無有雜染的本性，能淨化眾生身心，洗滌業障，令行者回復本來面目。</p>
+            </div>
+        </div>
+
+        <!-- 12. 法繩 -->
+        <div class="tooltip-area rope-area" data-tooltip="rope">
+            <span>12</span>
+            <div class="tooltip left" id="rope-tooltip">
+                <h3>法繩</h3>
+                <p><strong>象徵意涵：</strong>繫縛與引導<br><strong>法器說明：</strong>象徵以慈悲心繫縛眾生、引導正道，修持慈、悲、喜、捨四無量心，以及平等與智慧，不令眾生墮入邪途。</p>
+            </div>
+        </div>
+
+        <!-- 13. 法螺 -->
+        <div class="tooltip-area conch-area" data-tooltip="conch">
+            <span>13</span>
+            <div class="tooltip right" id="conch-tooltip">
+                <h3>法螺</h3>
+                <p><strong>象徵意涵：</strong>宣說佛法<br><strong>法器說明：</strong>代表口業清淨與法音宣流，象徵佛法的傳播力量。其聲能穿越六道輪迴，喚醒沉睡眾生的本覺佛性。</p>
+            </div>
+        </div>
+
+        <!-- 14. 法輪 -->
+        <div class="tooltip-area wheel-area" data-tooltip="wheel">
+            <span>14</span>
+            <div class="tooltip left" id="wheel-tooltip">
+                <h3>法輪</h3>
+                <p><strong>象徵意涵：</strong>八正道與時間<br><strong>法器說明：</strong>代表佛陀初轉法輪的八正道教法，以及十二時辰晝夜不息的時間流轉，象徵佛法恆常轉動、永不停息地度化眾生。</p>
+            </div>
+        </div>
+
+        <!-- 15. 賢瓶 -->
+        <div class="tooltip-area wisdom-vase-area" data-tooltip="wisdom-vase">
+            <span>15</span>
+            <div class="tooltip right" id="wisdom-vase-tooltip">
+                <h3>賢瓶</h3>
+                <p><strong>象徵意涵：</strong>智慧寶藏<br><strong>法器說明：</strong>專門對治心靈的煩惱與困擾，內含累世累積的智慧知識，象徵破除心識障礙的力量，開啟無盡的智慧寶藏。</p>
+            </div>
+        </div>
+
+        <!-- 16. 般若夾 -->
+        <div class="tooltip-area wisdom-clamp-area" data-tooltip="wisdom-clamp">
+            <span>16</span>
+            <div class="tooltip left" id="wisdom-clamp-tooltip">
+                <h3>般若夾</h3>
+                <p><strong>象徵意涵：</strong>智慧收放<br><strong>法器說明：</strong>用以收放經文、疏文的法器，象徵般若智慧能收放自如，提醒行者智慧的運用要能進退有度、靈活應用。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="instructions">
+        <h2>準提佛母法器說明</h2>
+        <p><strong>16個法器：</strong></p>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 15px; text-align: left;">
+            <div>• 無畏印</div>
+            <div>• 智慧劍</div>
+            <div>• 念珠</div>
+            <div>• 妙天果</div>
+            <div>• 斧</div>
+            <div>• 鉤</div>
+            <div>• 金剛杵</div>
+            <div>• 髮蔓</div>
+            <div>• 如意寶幢</div>
+            <div>• 蓮花</div>
+            <div>• 淨瓶</div>
+            <div>• 法繩</div>
+            <div>• 法螺</div>
+            <div>• 法輪</div>
+            <div>• 賢瓶</div>
+            <div>• 般若夾</div>
+        </div>
+        <p style="margin-top: 20px; font-style: italic; color: #666;">
+            <strong>註：</strong>準提佛母通常示現十八臂相，每隻手持不同法器，代表不同的修行法門與功德。虔誠觀想與了解這些法器的意涵，能幫助行者深入準提法門的修持。
+        </p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tooltipAreas = document.querySelectorAll('.tooltip-area');
+            let activeTooltip = null;
+
+            // 為每個法器區域添加事件監聽器
+            tooltipAreas.forEach(area => {
+                const tooltip = area.querySelector('.tooltip');
+                
+                // 滑鼠進入事件
+                area.addEventListener('mouseenter', function() {
+                    hideAllTooltips();
+                    showTooltip(tooltip);
+                });
+
+                // 滑鼠離開事件
+                area.addEventListener('mouseleave', function() {
+                    hideTooltip(tooltip);
+                });
+
+                // 觸控設備支援
+                area.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    area.classList.add('touch-active');
+                    hideAllTooltips();
+                    showTooltip(tooltip);
+                });
+
+                area.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    area.classList.remove('touch-active');
+                });
+
+                // 點擊其他區域隱藏工具提示
+                area.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+
+            // 點擊頁面其他區域隱藏所有工具提示
+            document.addEventListener('click', function() {
+                hideAllTooltips();
+            });
+
+            // 觸控設備：點擊其他區域隱藏工具提示
+            document.addEventListener('touchstart', function(e) {
+                if (!e.target.closest('.tooltip-area')) {
+                    // 移除所有觸控樣式
+                    tooltipAreas.forEach(area => {
+                        area.classList.remove('touch-active');
+                    });
+                    hideAllTooltips();
+                }
+            });
+
+            function showTooltip(tooltip) {
+                if (activeTooltip) {
+                    hideTooltip(activeTooltip);
+                }
+                
+                tooltip.classList.add('show');
+                activeTooltip = tooltip;
+                
+                // 調整工具提示位置，避免超出螢幕
+                adjustTooltipPosition(tooltip);
+            }
+
+            function hideTooltip(tooltip) {
+                tooltip.classList.remove('show');
+                if (activeTooltip === tooltip) {
+                    activeTooltip = null;
+                }
+            }
+
+            function hideAllTooltips() {
+                tooltipAreas.forEach(area => {
+                    const tooltip = area.querySelector('.tooltip');
+                    hideTooltip(tooltip);
+                });
+            }
+
+            function adjustTooltipPosition(tooltip) {
+                const rect = tooltip.getBoundingClientRect();
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                
+                // 檢查是否超出右邊界
+                if (rect.right > viewportWidth) {
+                    tooltip.classList.remove('left');
+                    tooltip.classList.add('right');
+                }
+                
+                // 檢查是否超出左邊界
+                if (rect.left < 0) {
+                    tooltip.classList.remove('right');
+                    tooltip.classList.add('left');
+                }
+                
+                // 檢查是否超出上邊界
+                if (rect.top < 0) {
+                    tooltip.classList.remove('top');
+                    tooltip.classList.add('bottom');
+                }
+            }
+
+            // 視窗大小改變時重新調整位置
+            window.addEventListener('resize', function() {
+                if (activeTooltip) {
+                    adjustTooltipPosition(activeTooltip);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
