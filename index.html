@@ -488,9 +488,24 @@
                 height: 55px;
             }
             
-            .mala-area, .fruit-area, .hook-area, .hair-vine-area, .pure-vase-area, .rope-area, .wisdom-vase-area, .wisdom-clamp-area, .abhaya-area {
+            .mala-area, .fruit-area, .hook-area, .pure-vase-area, .rope-area, .wisdom-vase-area, .abhaya-area {
                 width: 45px;
                 height: 45px;
+            }
+
+            /* 調整熱點8（髮蔓）和熱點16（般若夾）的位置，避免在手機上重疊 */
+            .hair-vine-area {
+                width: 45px;
+                height: 45px;
+                top: 48% !important;
+                right: 52% !important;
+            }
+
+            .wisdom-clamp-area {
+                width: 45px;
+                height: 45px;
+                top: 52% !important;
+                right: 43% !important;
             }
 
             .instructions {
@@ -658,19 +673,19 @@
             </div>
         </div>
 
-        <!-- 13. 法螺 -->
-        <div class="tooltip-area conch-area" data-tooltip="conch">
-            <div class="tooltip right" id="conch-tooltip">
-                <h3>法螺</h3>
-                <p><strong>象徵意涵：</strong>宣說佛法<br><strong>法器說明：</strong>代表口業清淨與法音宣流，象徵佛法的傳播力量。其聲能穿越六道輪迴，喚醒沉睡眾生的本覺佛性。</p>
-            </div>
-        </div>
-
-        <!-- 14. 法輪 -->
-        <div class="tooltip-area wheel-area" data-tooltip="wheel">
+        <!-- 13. 法輪 -->
+        <div class="tooltip-area conch-area" data-tooltip="wheel">
             <div class="tooltip left" id="wheel-tooltip">
                 <h3>法輪</h3>
                 <p><strong>象徵意涵：</strong>八正道與時間<br><strong>法器說明：</strong>代表佛陀初轉法輪的八正道教法，以及十二時辰晝夜不息的時間流轉，象徵佛法恆常轉動、永不停息地度化眾生。</p>
+            </div>
+        </div>
+
+        <!-- 14. 法螺 -->
+        <div class="tooltip-area wheel-area" data-tooltip="conch">
+            <div class="tooltip right" id="conch-tooltip">
+                <h3>法螺</h3>
+                <p><strong>象徵意涵：</strong>宣說佛法<br><strong>法器說明：</strong>代表口業清淨與法音宣流，象徵佛法的傳播力量。其聲能穿越六道輪迴，喚醒沉睡眾生的本覺佛性。</p>
             </div>
         </div>
 
@@ -692,8 +707,7 @@
     </div>
 
     <div class="instructions">
-        <h2>準提佛母法器說明</h2>
-        <p><strong>16個法器：</strong></p>
+        <h2>準提佛母的16個法器</h2>
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 15px; text-align: left;">
             <div>• 無畏印</div>
             <div>• 智慧劍</div>
@@ -713,7 +727,7 @@
             <div>• 般若夾</div>
         </div>
         <p style="margin-top: 20px; font-style: italic; color: #666;">
-            <strong>註：</strong>準提佛母通常示現十八臂相，每隻手持不同法器，代表不同的修行法門與功德。虔誠觀想與了解這些法器的意涵，能幫助行者深入準提法門的修持。
+            <strong>註：</strong>準提佛母通常示現十八臂相，每隻手持不同法器，代表不同的用途和意義。努力練習觀想，加油！
         </p>
     </div>
 
